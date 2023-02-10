@@ -49,6 +49,40 @@ When `url` is define a link is added to the post. The `{0}` is replaced with the
 
 Additionally you can specify a `message` value, which is an additional message added (above the link).
 
+### Modes
+
+By default the mode is `random` which means it picks a random file and makes a screenshot from a random point in time.
+
+#### Cycle
+
+If you set the mode to `cycle` the videos will be visited sequentially over a given cycle time (by default 1 year). It is basically a progress for a given time.
+
+```json
+{
+	...
+	"mode": "cycle",
+	"cycle": "P1Y",
+	...
+}
+```
+
+The `cycle` value should be an ISO8601 Duration.
+
+At first run it will create a `state.json` file containing the durations of the used files, total duration, current progress, but most importantly: the epoch.
+
+```json
+{
+   "epoch":1672531200,
+   "position":0.09234982496242213,
+   "durations":{
+      "somefile.mkv":5165.91
+   },
+   "total-duration":5165.91
+}
+```
+
+The epoch defines when the cycle started. The epoch is a UNIX timestamp. You can create the `state.json` file before the first run and set the desired epoch.
+
 ## Installation
 
 The following python libraries are used and should be installed:
