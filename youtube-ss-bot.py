@@ -118,7 +118,8 @@ try:
 		api_base_url = config["api"]
 	)
 	media = mastodon.media_post(tmp.name)
-	mastodon.status_post(msg, media_ids=media)
+	result = mastodon.status_post(msg, media_ids=media)
+	print(result.url)
 finally:
 	os.unlink(tmp.name)
 	#print(tmp.name)
