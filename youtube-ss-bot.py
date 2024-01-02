@@ -81,7 +81,7 @@ def mode_cycle():
 			config["cycle"] = "P1Y"
 		cycle = isodate.parse_duration(config["cycle"])
 		enddate = datetime.fromtimestamp(state["epoch"]) + cycle
-		state["position"] = (datetime.now().timestamp() - state["epoch"]) / (enddate.timestamp() - state["epoch"])
+		state["position"] = ((datetime.now().timestamp() - state["epoch"]) / (enddate.timestamp() - state["epoch"]) % 1)
 	json.dump(state, open(stateFile, "w"))
 	offset = state["position"] * state["total-duration"]
 	entry = None
